@@ -1,0 +1,2 @@
+class ViewRenderEvent:
+    pass

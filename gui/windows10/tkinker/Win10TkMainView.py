@@ -24,7 +24,12 @@ class Win10TkMainView(TkView):
 
         self.initVideoPreviewWidget()
 
+        # super().start()
+
+    def start(self):
         super().start()
+
+
 
     def configureFrames(self):
         self.frames['left'] = Frame(super().getRoot(), width=300, style=self.theme.leftPanelStyleName())

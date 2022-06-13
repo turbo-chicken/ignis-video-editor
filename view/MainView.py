@@ -4,5 +4,8 @@ from view.View import View
 class MainView(View):
 
     def open(self):
-        super().initView().render()
+        self.window = super().initView()
+        self.window.render()
+        self.event_dispatcher.dispatch()
+        self.window.start()
         pass
