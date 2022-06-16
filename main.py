@@ -1,21 +1,28 @@
 import pinject
 
+import eventHandler.listener.MainViewListener
 from appRuntime import AppRuntime
-from view.MainView import MainView
+from eventHandler.EventHandler import EventHandler
+# from view.MainView import MainView
 
 if __name__ == '__main__':
     # uiThread = threading.Thread(target=MainView().open, args=[])
     # uiThread.start()
 
+    listeners = []
+    class SomeBindingSpec(pinject.BindingSpec):
+        def configure(self, bind):
+            bind('listeners', to_instance=listeners)
+            # bind('view', to_class=MainView)
 
-    #runtime = AppRuntime()
-    obj_graph = pinject.new_object_graph()
-    # obj_graph = pinject.new_object_graph(modules=None, classes=[AppRuntime])
-    # obj_graph.provide(SomeClass)  # would raise a NothingInjectableForArgError
-    # obj_graph = pinject.new_object_graph(modules=None, classes=[SomeClass, Foo])
-    some_class = obj_graph.provide(AppRuntime)
-    view = obj_graph.provide(MainView)
-    view.open()
+    obj_graph = pinject.new_object_graph(binding_specs=[SomeBindingSpec()])
+    runtime = obj_graph.provide(AppRuntime)
+
+    listeners.append(obj_graph.provide(eventHandler.listener.MainViewListener.MainViewListener))
+
+    runtime.startMainView()
+    # view = obj_graph.provide(MainView)
+    # view.open()
 
 
 

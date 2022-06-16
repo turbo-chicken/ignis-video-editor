@@ -5,6 +5,7 @@ class TkDefaultTheme:
     LEFT_PANEL = 'LeftSide.TFrame'
     TOP_PANEL = 'Top.TFrame'
     BOTTOM_PANEL = 'Bottom.TFrame'
+    VIDEO_CONTROLS_PANEL = 'VideoControls.TFrame'
 
     def configure(self):
         self.leftPanelStyle = Style()
@@ -16,6 +17,9 @@ class TkDefaultTheme:
         self.bottomPanelStyle = Style()
         self.bottomPanelStyle.configure(self.BOTTOM_PANEL, background='#EB6841')
 
+        self.videoControlsPanelStyle = Style()
+        self.videoControlsPanelStyle.configure(self.VIDEO_CONTROLS_PANEL, background='red')
+
     def leftPanelStyleName(self):
         return self.LEFT_PANEL
 
@@ -24,3 +28,6 @@ class TkDefaultTheme:
 
     def bottomPanelStyleName(self):
         return self.BOTTOM_PANEL
+
+    def videoControlsPanelStyleName(self):
+        return self.VIDEO_CONTROLS_PANEL

@@ -2,9 +2,8 @@ from PIL import ImageTk, Image
 from tkinter import *
 from tkinter.ttk import Frame, Label, Style
 import tkinter as tk
-
 from PIL.ImageTk import PhotoImage
-
+from env import Env
 from gui.windows10.tkinker.TkView import TkView
 
 
@@ -22,14 +21,8 @@ class Win10TkMainView(TkView):
         self.theme.configure()
         self.configureFrames()
 
-        self.initVideoPreviewWidget()
-
-        # super().start()
-
     def start(self):
         super().start()
-
-
 
     def configureFrames(self):
         self.frames['left'] = Frame(super().getRoot(), width=300, style=self.theme.leftPanelStyleName())
@@ -38,21 +31,29 @@ class Win10TkMainView(TkView):
         self.frames['video'] = Frame(super().getRoot(), width=1200, height=600, style=self.theme.topPanelStyleName())
         self.frames['video'].pack(side=TOP, expand=False, fill=BOTH)
 
+        self.frames['video_controls'] = Frame(super().getRoot(), width=1200, height=40, style=self.theme.videoControlsPanelStyleName())
+        self.frames['video_controls'].pack(side=TOP, expand=False, fill=BOTH)
+
         self.frames['controls'] = Frame(super().getRoot(), width=1200, height=600, style=self.theme.bottomPanelStyleName())
         self.frames['controls'].pack(side=BOTTOM, expand=False, fill=BOTH)
 
         return True
 
-    def initVideoPreviewWidget(self):
-        self.ref['preview-a'] = tk.Canvas(self.frames['video'], width=650, height=350)
+    def initVideoPreviewWidget(self, img):
+        self.ref['preview-a'] = tk.Canvas(self.frames['video'], width=800, height=600)
         self.ref['preview-a'].pack(side=LEFT, expand=False, fill=NONE)
 
-
         #     self.c.grid(row=1, column=1)
-        # img1 = PhotoImage(file=r"C:\work\experiments\python\ignis-video-editor\data\bananas.png")
-        # self.ref['image-container'] = self.ref['preview-a'].create_image(0, 0, anchor="nw", image=img1)
+        #img1 = PhotoImage(file=r"C:\work\experiments\python\ignis-video-editor\data\bananas.png")
+        self.ref['image-container'] = self.ref['preview-a'].create_image(0, 0, anchor="nw", image=img)
 
-        return True
+    def initVideoControlsWidget(self):
+        self.ref['play-btn'] = tk.Button(self.frames['video_controls'], text='Play', command=lambda: self.caller.onVideoPlayButtonPress())
+        self.ref['play-btn'].pack(side=LEFT, expand=False, fill=NONE)
+
+    def refreshVideoPreviewWidget(self, img):
+        self.ref['image-container'] = self.ref['preview-a'].create_image(0, 0, anchor="nw", image=img)
+        #return img1
     # def a1testUI(self):
     #     tkRoot = super().getRoot()
     #     frame = Frame(tkRoot, width=800, height=600)
