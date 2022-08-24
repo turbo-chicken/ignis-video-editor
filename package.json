@@ -1,0 +1,27 @@
+{
+  "name": "ignis-video-editor",
+  "version": "1.0.0",
+  "description": "Video editor",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turbo-chicken/ignis-video-editor.git"
+  },
+  "keywords": [
+    "video",
+    "editor",
+    "desktop"
+  ],
+  "author": "turbo-chicken",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/turbo-chicken/ignis-video-editor/issues"
+  },
+  "homepage": "https://github.com/turbo-chicken/ignis-video-editor#readme",
+  "devDependencies": {
+    "electron": "^20.0.3"
+  }
+}
